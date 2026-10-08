@@ -31,13 +31,29 @@ public class Account {
     // balance.
     // Use 'this.' to assign each parameter to the corresponding field.
     // Guard against a negative opening balance — if balance < 0, set it to 0.0.
- 
+    public Account(String accountNumber, String holderName, double balance){
+
+        this.accountNumber = accountNumber;
+        this.holderName = holderName;
+        this.balance = balance;
+
+    }
     // ── GETTERS ─────────────────────────────────────────────────────────────
     // Getters allow controlled READ access to private fields.
     // Because they are methods, you could add validation or logging inside them
     // later.
     // Naming convention in Java: getFieldName()
- 
+    public  String getAccountNumber(){
+        return accountNumber;
+    }
+    
+    public  String getholderName(){
+        return holderName;
+    }
+    
+    public  double getbalance(){
+        return balance;
+    }
     // TODO 2: Write getAccountNumber(), getHolderName(), and getBalance().
  
     // ── SETTERS ─────────────────────────────────────────────────────────────
@@ -47,6 +63,18 @@ public class Account {
     // This is where your class enforces its own rules — the outside world cannot
     // bypass them.
  
+    public void setaccountNumber(String newaccountNumber){
+        accountNumber = newaccountNumber;
+    }
+
+    public void setHolderName(String newholderName){
+        holderName = newholderName;
+    }
+    
+    public void setbalance(double newbalance){
+        balance = newbalance;
+    }
+
     // TODO 3: Write setHolderName(String name) — reject null or empty strings.
  
     // TODO 4: Write deposit(double amount).
