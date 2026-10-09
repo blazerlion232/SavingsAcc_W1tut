@@ -23,11 +23,6 @@ public class SavingsAccount extends Account {
         + String.format(" | Rate: %.2f%%]", interestRate);
     }
  
-    // ── NEW BEHAVIOUR ───────────────────────────────────────────────────────
-    // TODO 4: Write applyInterest().
-    // It should calculate interest: balance * interestRate,
-    // and deposit that amount using the inherited deposit() method.
-    // This demonstrates calling an inherited method from the child class.
     public void applyInterest(){
         double interest = getBalance() * interestRate; 
         deposit(interest);
