@@ -1,7 +1,5 @@
-public class Account {
- 
-
- 
+public class Account implements Printable {
+  
     private String accountNumber; // Unique identifier for this account
     private String holderName; // Full name of the account holder
     private double balance; // Current balance in pounds
@@ -65,6 +63,19 @@ public class Account {
         }
 
     }
+
+    @Override 
+    public void printDetails(){
+        System.out.println("Account Number: " +  accountNumber);
+        System.out.println("Holder Name: " + holderName);
+        System.out.println("Balance: " + balance);
+    }
+
+    @Override
+    public String getSummary(){
+        return "Account [Account Number: "+ accountNumber + " | Balance: £" + balance + "]";
+    }
+
 
    
     @Override
