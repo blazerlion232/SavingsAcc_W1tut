@@ -30,7 +30,21 @@ public class CurrentAccount extends Account {
         }
 
     }
- 
+    
+    @Override 
+    public void printDetails(){
+        super.printDetails();
+        System.out.println("Overdraft Limit: £" + overdraftLimit);
+    }
+
+    @Override 
+    public String getSummary(){
+        String summaryInfo = super.getSummary();
+        return summaryInfo.substring(0, summaryInfo.length() - 1) + 
+        String.format(" | Overdraft Limit: %.2f]", overdraftLimit);
+    }
+
+
     @Override 
     public String toString(){
         String accountInfo = super.toString();
