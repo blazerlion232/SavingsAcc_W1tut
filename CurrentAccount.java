@@ -16,7 +16,7 @@ public class CurrentAccount extends Account {
     }
     
     @Override
-    public void withdraw(double amount) {
+    public boolean withdraw(double amount) {
         if(amount <= 0 ){
             throw new IllegalArgumentException("Amount must be above 0");
         }
@@ -25,6 +25,7 @@ public class CurrentAccount extends Account {
 
         if(theoryBalance >= minbalance){
             withdraw(amount);
+            return true;
         }else{
             throw new IllegalArgumentException("amount to be withdrawn exceeds account limits");
         }

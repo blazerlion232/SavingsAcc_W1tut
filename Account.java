@@ -1,4 +1,4 @@
-public class Account implements Printable {
+public class Account implements Printable, Transferable {
   
     private String accountNumber; // Unique identifier for this account
     private String holderName; // Full name of the account holder
@@ -54,15 +54,28 @@ public class Account implements Printable {
     }
  
  
-    public void withdraw(double amount){
+    public boolean withdraw(double amount){
         double remaining = balance - amount;
         if(amount > 0 && remaining >= 0){
             balance -= amount;
+            return true;
         }else{
             throw new IllegalArgumentException("Amount withdrawn must be greater than 0 and you can not draw out of your account more than you have");
         }
 
     }
+
+    @Override 
+    public void transfer(Account target, double amount){
+        if(amount >= 0){
+            if(withdraw(amount)){
+                target.deposit(amount);
+            }
+        }else{
+            throw new IllegalArgumentException("Amount must be greater than 0");
+        }
+    }
+
 
     @Override 
     public void printDetails(){

@@ -1,4 +1,4 @@
-public class SavingsAccount extends Account {
+public class SavingsAccount extends Account{
  
     private double interestRate; // e.g. 0.03 represents 3% annual interest
  
