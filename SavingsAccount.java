@@ -15,7 +15,20 @@ public class SavingsAccount extends Account {
     public double getInterestRate(){
         return interestRate;
     }
-    
+
+    @Override
+    public void printDetails(){
+        super.printDetails();
+        System.out.println("interest Rate: " + interestRate);
+    }
+
+    @Override 
+    public String getSummary(){
+        String summaryInfo = super.getSummary();
+        return summaryInfo.substring(0, summaryInfo.length() - 1) 
+        + String.format(" | Interest Rate: %.2f]", interestRate);
+    }
+
     @Override
     public String toString() {
         String accountInfo = super.toString();
