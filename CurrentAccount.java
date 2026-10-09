@@ -24,7 +24,7 @@ public class CurrentAccount extends Account {
         double minbalance = 0 - overdraftLimit;
 
         if(theoryBalance >= minbalance){
-            withdraw(amount);
+            setBalance(theoryBalance);
             return true;
         }else{
             throw new IllegalArgumentException("amount to be withdrawn exceeds account limits");
