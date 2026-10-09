@@ -1,37 +1,41 @@
-/**
- * CurrentAccount.java
- *
- * Extends Account to represent a current (chequing) account.
- * Unique feature: an overdraft limit — the account holder can go
- * a specified amount below zero. The withdraw() method must be
- * overridden to allow this.
- */
 public class CurrentAccount extends Account {
  
-    private double overdraftLimit; // Maximum amount the balance can go below 0
+    private double overdraftLimit; 
  
-    // TODO 1: Write the constructor. Call super() first.
-    // Validate: overdraftLimit must be >= 0.
- 
-    // TODO 2: Write getOverdraftLimit().
- 
-    // ── OVERRIDING WITH CHANGED BEHAVIOUR ───────────────────────────────────
-    // The parent's withdraw() rejects any amount that would take balance below 0.
-    // For a current account, going below 0 is allowed — up to the overdraft limit.
-    // We override withdraw() to apply the current-account rule instead.
- 
-    // TODO 3: Override withdraw(double amount).
-    // New rule: the withdrawal is valid if: balance - amount >= -overdraftLimit
-    // If invalid, throw an IllegalArgumentException with a helpful message.
-    // If valid, reduce the balance.
-    // WHY override instead of creating a new method?
-    // Because external code refers to this as an Account. When it calls
-    // withdraw() on any Account, it should automatically get the right behaviour.
+    public CurrentAccount(String accountNumber, String holderName, double balance, double overdraftLimit){
+        super(accountNumber, holderName, balance);
+        if(overdraftLimit >= 0){
+            this.overdraftLimit = overdraftLimit;
+        }else{
+            throw new IllegalArgumentException("Overdraft limit must be greater than or equal to 0");
+        }
+    }
+    
+    public double getOverdraftLimit(){
+        return overdraftLimit;
+    }
+    
     @Override
     public void withdraw(double amount) {
-        // TODO: implement overdraft-aware withdrawal
+        if(amount <= 0 ){
+            throw new IllegalArgumentException("Amount must be above 0");
+        }
+        double theoryBalance = getBalance() - amount;
+        double minbalance = 0 - overdraftLimit;
+
+        if(theoryBalance >= minbalance){
+            withdraw(amount);
+        }else{
+            throw new IllegalArgumentException("amount to be withdrawn exceeds account limits");
+        }
+
     }
  
-    // TODO 4: Override toString() to include the overdraft limit.
+    @Override 
+    public String toString(){
+        String accountInfo = super.toString();
+        return accountInfo.substring(0, accountInfo.length()-1) 
+        + String.format(" | OverDraft Limit: %.2f]", overdraftLimit ); 
+    }
  
 }
