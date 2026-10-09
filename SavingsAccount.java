@@ -7,7 +7,7 @@ public class SavingsAccount extends Account {
         if(interestRate >= 0.0 && interestRate <= 1.0){
             this.interestRate = interestRate;
         }else{
-            System.out.println("Interest Rate must be between 0.0 and 1.0");
+            throw new IllegalArgumentException("Interest Rate must be between 0.0 and 1.0");
         }
 
     }
